@@ -2,7 +2,7 @@ package ru.bfu.ipmit.lab2;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class GetKSmallestNumbersTests {
 
@@ -14,7 +14,7 @@ public class GetKSmallestNumbersTests {
         byte[] actualResult = Lab2.getKSmallestNumbers(array, k);
 
         byte[] expectedResult = {1, 8};
-        assertEquals(actualResult, expectedResult);
+        assertArrayEquals(actualResult, expectedResult);
     }
 
 }
