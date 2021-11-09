@@ -1,7 +1,6 @@
 package ru.bfu.ipmit.lab2;
 
 public class Lab2 {
-
     /**
      * Метод getKSmallestNumbers возвращает k наименьших элементов в массиве array, отсортированных в порядке возрастания
      *
@@ -15,8 +14,29 @@ public class Lab2 {
      *
      */
     static byte[] getKSmallestNumbers(byte[] array, int k) {
-        // TODO: implement this method
-        return null;
+        if (array.length == 0) {
+            return array;
+        }
+        int h = 0;
+        for (int i = 0; i < array.length; i++) {
+            byte max = array[0];
+            int max_index = 0;
+            for (int j = 1; j < array.length - h; j++) {
+                if (max < array[j]) {
+                    max = array[j];
+                    max_index = j;
+                }
+            }
+            byte swap = array[array.length-1-h];
+            array[array.length-1-h] = max;
+            array[max_index] = swap;
+            h++;
+        }
+        byte[] newArr = (array.length > k) ? new byte[k] : new byte[array.length];
+        for (int i = 0; i < k && i < array.length; i++) {
+            newArr[i] = array[i];
+        }
+        return newArr;
     }
 
     /**
@@ -39,8 +59,22 @@ public class Lab2 {
      *
      */
     static boolean arePermutations(String firstString, String secondString) {
-        // TODO: implement this method
-        return false;
+        boolean flag = true;
+        for (int i = 0; i < firstString.length(); i++) {
+            for (int j = 0; j < secondString.length(); j++) {
+                if (firstString.charAt(i) == secondString.charAt(j)) {
+                    secondString.replaceFirst(Character.toString(secondString.charAt(j)),"_");
+                    break;
+                }
+                if (j == secondString.length() - 1) {
+                    flag = false;
+                }
+            }
+            if (flag == false) {
+                break;
+            }
+        }
+        return flag;
     }
 
     /**
@@ -60,8 +94,16 @@ public class Lab2 {
      *
      */
     static int[][] rotateMatrix(int[][] matrix) {
-        // TODO: implement this method
-        return null;
+        if (matrix.length == 0) {
+            return matrix;
+        }
+        int n = matrix[0].length;
+        int[][] newMatrix = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                newMatrix[i][j]=matrix[n-1-j][i];
+            }
+        }
+        return newMatrix;
     }
-
 }
